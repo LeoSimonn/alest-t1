@@ -1,40 +1,72 @@
-
 public class App {
-
     public static void main(String[] args) {
-
         StackOfInteger stack = new StackOfInteger();
 
-        DoubleLinkedListOfInteger dlist = new DoubleLinkedListOfInteger();
-        dlist.add(10);
-        dlist.add(20);
-        dlist.add(30);
-        dlist.add(40);
-        dlist.add(50);
-        dlist.add(60);
-        dlist.add(70);
-        dlist.add(80);
+        // Adiciona elementos na pilha
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
 
-        System.out.println("Lista atual: " + dlist);
-        System.out.println("Tamanho da lista: " + dlist.size());
+        // Usando os métodos da pilha
+        System.out.println("\n");
+        System.out.println("Demonstração dos métodos da classe StackOfInteger:");
+        System.out.println("Elemento no topo da pilha: " + stack.top()); // Deve mostrar 30
+        System.out.println("Elemento removido: " + stack.pop()); // Deve remover e mostrar 30
+        System.out.println("Tamanho atual da pilha: " + stack.size()); // Deve mostrar 2
+        System.out.println("A pilha está vazia? " + stack.isEmpty()); // Deve mostrar false
+        stack.clear();
+        System.out.println("A pilha está vazia após limpar? " + stack.isEmpty()); // Deve mostrar true
 
-        System.out.println("Busca valor na posição 2: " + dlist.get(2));
-        System.out.println("Busca valor na posição 6: " + dlist.get(6));
-        
-        System.out.println("Trocou " + dlist.set(2, 35) + " por 35 na posicao 2.");
-        
-        System.out.println("Removeu 50? " + dlist.remove(50));
-        System.out.println("Removeu 57? " + dlist.remove(57));
+        // Demonstração do método reverseArrayUsingStack
+        int[] array = { 1, 2, 3, 4, 5 };
+        int[] reversedArray = reverseArrayUsingStack(array);
+        System.out.print("Array invertido: ");
+        for (int num : reversedArray) {
+            System.out.print(num + " ");
+        }
 
-        System.out.println("Lista atual: " + dlist);
+        /*****************************************************************************************/
 
-        dlist.add(0,0);
-        dlist.add(dlist.size(),90);
-        dlist.add(4,44);
-        System.out.println("Lista atual: " + dlist);
+        QueueOfInteger queue = new QueueOfInteger();
 
-        System.out.println("List de trás para frente: " + dlist.toStringBackToFront());
+        // Adicionando elementos na fila
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
 
+        // Demonstração dos métodos da fila
+        System.out.println("\n");
+        System.out.println("Demonstração dos métodos da classe QueueOfInteger: ");
+        System.out.println("Head da fila: " + queue.head()); // Deve mostrar 10
+        System.out.println("Removido da fila: " + queue.dequeue()); // Deve remover e mostrar 10
+        System.out.println("Tamanho atual da fila: " + queue.size()); // Deve mostrar 2
+        System.out.println("A fila está vazia? " + queue.isEmpty()); // Deve mostrar false
+        queue.clear();
+        System.out.println("A fila está vazia após limpar? " + queue.isEmpty()); // Deve mostrar true
+
+        // Demonstração do método enqueuePriority
+        queue.enqueuePriority(50);
+        queue.enqueuePriority(40);
+        queue.enqueuePriority(60);
+        queue.enqueuePriority(45);
+        System.out.println("Fila após inserções prioritárias: ");
+        while (!queue.isEmpty()) {
+            System.out.print(queue.dequeue() + " "); // Deve imprimir os elementos em ordem: 40, 45, 50, 60
+        }
+
+    }
+
+    public static int[] reverseArrayUsingStack(int[] array) {
+        StackOfInteger stack = new StackOfInteger();
+        for (int item : array) {
+            stack.push(item);
+        }
+        int[] reversedArray = new int[array.length];
+        int index = 0;
+        while (!stack.isEmpty()) {
+            reversedArray[index++] = stack.pop();
+        }
+        return reversedArray;
     }
 
 }
